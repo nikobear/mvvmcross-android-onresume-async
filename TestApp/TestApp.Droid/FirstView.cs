@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
-using Android.Util;
 using MvvmCross.Droid.Views;
 
 namespace TestApp.Droid
@@ -14,11 +14,15 @@ namespace TestApp.Droid
 
 			SetContentView(Resource.Layout.Main);
 		}
+
 		protected override void OnResume()
 		{
 			base.OnResume();
 
-			Log.Info("testapp", "hi");
+			//Task.Run(async () => await ViewModel.DoTest());
+			ViewModel.TestCommandAsync.Execute(null);
+
+			System.Diagnostics.Debug.WriteLine("OnResume done");
 		}
 	}
 }
